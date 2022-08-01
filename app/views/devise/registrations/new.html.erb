@@ -1,40 +1,45 @@
-
 <%= render "devise/shared/error_messages", resource: resource %>
-<div class="w-screen h-screen flex justify-center items-center bg-gray-100">
+<div class="w-screen h-screen flex justify-center items-center bg-gray-200">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <div class="bg-grey-lighter min-h-screen flex flex-col">
-      <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-          <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-              <h1 class="mb-8 text-3xl text-center">SIGN UP</h1>
-              <input 
-                  type="email"
-                  class="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none"
-                  name="user[email]"
-                  autofocus="autofocus"
-                  id="user_email"
-                  placeholder="Work email" />
-              <input 
-                  type="username"
-                  class="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none"
-                  name="user[username]"
-                  autofocus="autofocus"
-                  id="user_login"
-                  placeholder="Tacacs username" />
-              <input 
-                  type="password"
-                  class="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none"
-                  name="user[password]"
-                  id="user_password"
-                  placeholder="Tacacs password" />
-              <input 
-                  type="password"
-                  class="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none"
-                  name="user[password_confirmation]"
-                  id="user_password_confirmation"
-                  placeholder="Password confirmation" />
-
-              <button class="bg-purple-600 hover:bg-purple-900 text-white font-bold p-2 rounded w-80" id="sign_up" type="submit"><span>Sign Up</span></button>
+      <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2 max-w-md w-full rounded p-6 space-y-4">
+        <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full mb-20">
+          <div class="flex justify-center items-center flex-col" >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-gray-600 mb-2" viewbox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+            </svg>
           </div>
+                <h1 class="mb-8 text-3xl text-center">SIGN UP</h1>
+                <input 
+                    type="email"
+                    class="w-full p-4 mb-5 focus:border-purple-700 rounded border-2 outline-none"
+                    name="user[email]"
+                    autofocus="autofocus"
+                    id="user_email"
+                    placeholder="Work email" />
+                <input 
+                    type="username"
+                    class="w-full p-4 mb-5 focus:border-purple-700 rounded border-2 outline-none"
+                    name="user[username]"
+                    autofocus="autofocus"
+                    id="user_login"
+                    placeholder="Tacacs username" />
+                <input 
+                    type="password"
+                    class="w-full p-4 mb-5 focus:border-purple-700 rounded border-2 outline-none"
+                    name="user[password]"
+                    id="user_password"
+                    placeholder="Tacacs password" />
+                <input 
+                    type="password"
+                    class="w-full p-4 mb-5 focus:border-purple-700 rounded border-2 outline-none"
+                    name="user[password_confirmation]"
+                    id="user_password_confirmation"
+                    placeholder="Password confirmation" />
+
+                <button class="w-full py-4 bg-blue-600 hover:bg-blue-700 rounded text-sm font-bold text-gray-50 transition duration-200" id="sign_up" type="submit"><span>Sign Up</span></button>
+          </div>
+        </div>    
       </div>
     </div>
   <% end %>

@@ -1,12 +1,17 @@
-<% if resource.errors.any? %>
-  <div class="flex justify-between text-red-700 border border-red-400 shadow-inner rounded relative p-3 bg-red-100">
-    <ul>
-      <% resource.errors.full_messages.each do |message| %>
-        <li class="py-1"><%= message %></li>
-      <% end %>
-    </ul>
-    <strong class="text-xl lighn-center cursor-pointer alert-del">
-      &times;
-    </strong>  
-  </div>
-<% end %>
+<div data-controller="error">
+  <% if resource.errors.any? %>
+    <div
+      data-error-target="elementToHide"
+      class="flex justify-between text-red-700 border border-red-400 shadow-inner rounded relative p-3 bg-red-100"
+    >
+      <ul>
+        <% resource.errors.full_messages.each do |message| %>
+          <li class="py-1"><%= message %></li>
+        <% end %>
+      </ul>
+      <strong data-action="click->error#toggle" class="text-xl lighn-center cursor-pointer alert-del">
+        &times;
+      </strong>  
+    </div>
+  <% end %>
+</div>

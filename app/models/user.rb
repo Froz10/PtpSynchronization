@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
+
+  has_many :tacacs_users
   
   attr_writer :login
 
