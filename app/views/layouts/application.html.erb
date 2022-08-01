@@ -35,7 +35,13 @@
             &times;
           </strong>
       </div>
-    <% end %>  
-    <%= yield %>
+    <% end %>
+    <section class="flex">
+      <%= render 'shared/sidebar' if current_user %>
+
+      <main class="container">
+        <%= yield %>
+      </main>
+    </section>
   </body>
 </html>

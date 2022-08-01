@@ -6,5 +6,7 @@ import { application } from "./application"
 
 import HeaderController from "./header_controller"
 import ErrorController from "./error_controller"
+import SidebarController from "./sidebar_controller"
 application.register("header", HeaderController)
 application.register("error", ErrorController)
+application.register("sidebar", SidebarController)
