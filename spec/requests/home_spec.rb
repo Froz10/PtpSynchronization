@@ -1,9 +1,15 @@
 require "rails_helper"
 
-RSpec.describe "Homes", type: :request do
-  describe "GET /index" do
+RSpec.describe HomeController, type: :controller do
+  let!(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
+
+  describe "#index" do
     it "succeeds" do
-      get root_path
+      get :index
       expect(response).to be_successful
     end
   end
