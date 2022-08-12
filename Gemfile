@@ -4,6 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.2"
 
 gem 'activeadmin'
+gem 'caxlsx', '~> 3.1'
+gem 'caxlsx_rails', '~> 0.6'
+gem 'rubyzip', '~> 2'
 gem "rails", "~> 7.0.3"
 gem 'stimulus-rails'
 gem 'sass-rails'
