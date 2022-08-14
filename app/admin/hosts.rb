@@ -8,6 +8,12 @@ ActiveAdmin.register Host do
             method: :get
   end
 
+  action_item :import_to_database do
+    link_to "Import to database", 
+            admin_import_hosts_path, 
+            method: :get
+  end
+
   member_action :export_from_database, method: :get do
     @hosts = Host.all
     render xlsx: 'hosts', layout: false, handlers: [:axlsx], formats: [:xlsx], template: 'users/hosts'
