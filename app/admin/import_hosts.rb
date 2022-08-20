@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 ActiveAdmin.register_page "Import Hosts" do
   page_action :import_hosts, method: :post do
-
-    if params[:exel_file].present?
-      HostBulkService.call params[:exel_file]
+    if params[:hosts]&.[]("exel_file")&.original_filename&.match?("xlsx")
+      HostBulkService.call params[:hosts][:exel_file]
       redirect_to admin_hosts_path, notice: "Hosts imported!"
     else
-      flash[:error] = 'Something was wrong'
+      flash[:error] = 'Something went wrong'
       redirect_to admin_import_hosts_path
     end
   end
