@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Hosts") do |sheet|
+  sheet.add_row ['name', 'creation date']
+  @hosts.each do |host|
+    sheet.add_row [host.name, host.created_at]
+  end
+end
