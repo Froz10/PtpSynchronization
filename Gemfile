@@ -13,6 +13,7 @@ gem "rails", "~> 7.0.3"
 gem 'stimulus-rails'
 gem 'sass-rails'
 gem "sprockets-rails"
+gem "tailwindcss-rails"
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 gem "jsbundling-rails"
