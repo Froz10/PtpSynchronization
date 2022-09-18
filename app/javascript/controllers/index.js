@@ -8,8 +8,10 @@ import HeaderController from "./header_controller"
 import ErrorController from "./error_controller"
 import SidebarController from "./sidebar_controller"
 import ModalController from "./modal_controller"
+import HostController from "./host_controller"
 
 application.register("header", HeaderController)
 application.register("error", ErrorController)
 application.register("sidebar", SidebarController)
 application.register("modal", ModalController)
+application.register("host", HostController)
