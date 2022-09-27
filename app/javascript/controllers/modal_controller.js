@@ -21,4 +21,5 @@ export default class extends Controller {
     enter(document.getElementById('modal-backdrop'));
     enter(document.getElementById('modal-panel'));
   }
+
 }

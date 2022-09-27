@@ -4,14 +4,14 @@
 
 import { application } from "./application"
 
-import HeaderController from "./header_controller"
-import ErrorController from "./error_controller"
-import SidebarController from "./sidebar_controller"
-import ModalController from "./modal_controller"
-import HostController from "./host_controller"
-
-application.register("header", HeaderController)
+import ErrorController from "./error_controller.js"
 application.register("error", ErrorController)
-application.register("sidebar", SidebarController)
+
+import HeaderController from "./header_controller.js"
+application.register("header", HeaderController)
+
+import ModalController from "./modal_controller.js"
 application.register("modal", ModalController)
-application.register("host", HostController)
+
+import SidebarController from "./sidebar_controller.js"
+application.register("sidebar", SidebarController)
