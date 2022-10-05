@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root 'home#index'
   resources :hosts
+
+  namespace :api do
+    resources :configurations, only: :create
+  end
 end

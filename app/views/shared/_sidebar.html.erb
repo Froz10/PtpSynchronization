@@ -102,16 +102,9 @@
             <a class="py-2 px-16 block text-sm text-gray-100 hover:bg-blue-500 hover:text-white" href="#">Create Ticket</a>
         </div>
     </div>
-
-
-    <div class="absolute bottom-0 my-8">
-        <a class="flex items-center py-2 px-8 text-gray-100 hover:text-gray-200" href="#">
-            <img class="h-6 w-6 rounded-full mr-3 object-cover" src="https://lh3.googleusercontent.com/a-/AOh14Gi0DgItGDTATTFV6lPiVrqtja6RZ_qrY91zg42o-g" alt="avatar">
-            <span>Khatabwedaa</span>
-        </a>
-    </div>
   </div>
 
   <%= yield :hosts %>
-
+  <%= render "shared/modal" %>
+    
 </section>
