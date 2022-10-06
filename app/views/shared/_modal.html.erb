@@ -4,6 +4,7 @@
   aria-labelledby="modal-title" 
   role="dialog" 
   aria-modal="true"
+  data-controller="panel"
   class="hidden relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
   <!--
     Background backdrop, show/hide based on modal state.
@@ -41,7 +42,7 @@
       -->
       <div 
         id="modal-panel" 
-        class="hidden relative transform overflow-hidden px-4 pt-4 pb-4 rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+        class="hidden relative transform overflow-hidden px-4 pt-5 pb-4 rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-xl sm:w-full"
         data-transition-enter="ease-out duration-300"
         data-transition-enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         data-transition-enter-end="opacity-100 translate-y-0 sm:scale-100"
@@ -49,24 +50,35 @@
         data-transition-leave-start="opacity-100 translate-y-0 sm:scale-100"
         data-transition-leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
       >
-        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-        
-          <div class="mt-5 text-center sm:mt-5">
-            
-            <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create Ptp Synchronization</h3>
-
-            <div class="relative">
-              <div class="mt-4 w-full border-t border-gray-300"></div>
-            <div>
-            
-            <div class="mt-2">
-              <p class="text-sm text-gray-500">Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.</p>
+        <div>
+          <div class="flex">
+            <div class="flex-none cursor-pointer mt-1" data-panel-target="closeButton">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </div>
-          </div>         
+            <div class="grow">
+              <h3 class="pr-7 text-lg font-medium leading-6 text-gray-900 mb-4 text-center" id="modal-title">Create Ptp Synchronization</h3>
+            </div>  
+          </div>
+          
+          <div class="relative">
+            <div class="mt-4 w-full border-t border-gray-300"></div>
+          </div>
+
+          <div class="clear"></div>
+          
+          <div class="pt-4">
+            <p class="text-sm text-gray-500">Are you sure you want to create synchronization? Configuration will be permanently confirmed. This action cannot be undone.</p>
+          </div>
+
+          <div class="mt-5 border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+            <label for="hostname" class="block text-xs font-medium text-gray-900">Hostname</label>
+            <input type="text" name="hostname" id="hostname" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="VO000084-CSG01">
+          </div>        
         </div>
-        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-          <button type="button" class="inline-flex justify-center w-full rounded-md border bg-blue-600 bg-indigo px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Deactivate</button>
-          <button type="button" class="inline-flex justify-center w-full rounded-md border bg-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto sm:text-sm">Cancel</button>
+        <div class="my-5 sm:my-6">
+          <button type="button" class="w-full justify-center inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create configuration</button>
         </div>
       </div>
     </div>

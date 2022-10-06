@@ -13,5 +13,8 @@ application.register("header", HeaderController)
 import ModalController from "./modal_controller.js"
 application.register("modal", ModalController)
 
+import PanelController from "./panel_controller.js"
+application.register("panel", PanelController)
+
 import SidebarController from "./sidebar_controller.js"
 application.register("sidebar", SidebarController)
