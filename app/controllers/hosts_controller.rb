@@ -2,7 +2,7 @@ class HostsController < ApplicationController
   def index   
   end
 
-  def show
+  def search
     if params[:hostname].present?
       hosts = Host.filter_by_name(params[:hostname]).map(&:name)
     else

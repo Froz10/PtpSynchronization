@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { enter, leave, toggle } from 'el-transition'
 
 export default class extends Controller {
-  static targets = ['closeButton', 'input'];
+  static targets = ['closeButton', 'input', 'output'];
 
   connect() {
     this.closeButtonTarget.addEventListener('click', () => {
@@ -13,8 +13,8 @@ export default class extends Controller {
   }
 
   findHostname() {
-    fetch(`/hosts/1?hostname=${ this.inputTarget.value }`)
+    fetch(`/hosts/search?hostname=${ this.inputTarget.value }`)
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => this.outputTarget.textContent = data.hostnames);
   }
 }
