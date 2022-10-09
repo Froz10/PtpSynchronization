@@ -76,7 +76,9 @@
             <label for="hostname" class="block text-xs font-medium text-gray-900">Hostname</label>
             <input type="text" data-action="input->panel#findHostname" data-panel-target="input" name="hostname" id="hostname" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="VO000084-CSG01">  
           </div>
-          <span data-panel-target="output"></span>    
+          <div class="mt-2 w-full bg-white border border-gray-300 overflow-hidden overflow-y-scroll rounded-md shadow-md">
+            <ul class="py-1" data-panel-target="output"></ul>
+          </div>    
         </div>
         <div class="mt-5 mb-2">
           <button type="button" class="w-full justify-center inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create configuration</button>
