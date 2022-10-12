@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import { enter, leave, toggle } from 'el-transition'
+import axios from 'axios';
 
 var arraySize = 0
 
@@ -8,7 +9,7 @@ export default class extends Controller {
     this.element.addEventListener("hidden", this.hidePanel())
   }
 
-  static targets = ['closeButton', 'input', 'output', 'hostnameChoice', 'source'];
+  static targets = ['closeButton', 'input', 'output', 'hostnameChoice', 'source', 'submit'];
 
   connect() {
     this.closeButtonTarget.addEventListener('click', () => {
@@ -50,6 +51,22 @@ export default class extends Controller {
   hidePanel() {
     if ( arraySize === 0 ) {
       this.sourceTarget.classList.add("hidden")
+    }
+  }
+
+  submitConfig() {
+    if (this.inputTarget.value.length === 0) {
+      console.log('empty')
+    } else {
+      axios.post('/api/configurations', { name: this.inputTarget.value }, {
+        headers: {
+          'ACCEPT': 'application/json'
+        }
+      }).then((response) => {
+        window.location = "/hosts"
+      }).catch((response) => {
+
+      })
     }
   }
 }

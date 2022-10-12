@@ -1,5 +1,7 @@
 module Api
   class ConfigurationsController < ApplicationController
+    skip_before_action :verify_authenticity_token
+  
     def create
       host = Host.find_by!(name: params[:name])
 
