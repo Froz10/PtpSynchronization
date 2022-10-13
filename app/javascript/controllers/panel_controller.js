@@ -9,7 +9,7 @@ export default class extends Controller {
     this.element.addEventListener("hidden", this.hidePanel())
   }
 
-  static targets = ['closeButton', 'input', 'output', 'hostnameChoice', 'source', 'submit'];
+  static targets = ['closeButton', 'input', 'output', 'hostnameChoice', 'source', 'submit', 'hostnameWrapper', 'invalidSvg' , 'errorMessage'];
 
   connect() {
     this.closeButtonTarget.addEventListener('click', () => {
@@ -56,7 +56,13 @@ export default class extends Controller {
 
   submitConfig() {
     if (this.inputTarget.value.length === 0) {
-      console.log('empty')
+      this.hostnameWrapperTarget.classList.add('invalid-inset-input-text-field')
+      this.hostnameWrapperTarget.classList.remove('focus-within:ring-1')
+      this.hostnameWrapperTarget.classList.remove('focus-within:ring-indigo-600')
+      this.hostnameWrapperTarget.classList.remove('focus-within:border-indigo-600')
+      this.invalidSvgTarget.classList.remove('hidden')
+      this.errorMessageTarget.classList.remove('hidden')
+      this.errorMessageTarget.textContent = 'Hostname must be less then 5 characters.'
     } else {
       axios.post('/api/configurations', { name: this.inputTarget.value }, {
         headers: {
@@ -65,7 +71,13 @@ export default class extends Controller {
       }).then((response) => {
         window.location = "/hosts"
       }).catch((response) => {
-
+        this.hostnameWrapperTarget.classList.add('invalid-inset-input-text-field')
+        this.hostnameWrapperTarget.classList.remove('focus-within:ring-1')
+        this.hostnameWrapperTarget.classList.remove('focus-within:ring-indigo-600')
+        this.hostnameWrapperTarget.classList.remove('focus-within:border-indigo-600')
+        this.invalidSvgTarget.classList.remove('hidden')
+        this.errorMessageTarget.classList.remove('hidden')
+        this.errorMessageTarget.textContent = 'Hostname not found'
       })
     }
   }

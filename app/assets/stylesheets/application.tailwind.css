@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.invalid-inset-input-text-field {
+  @apply border-red-300 border-2 focus-within:border-red-600;
+}
+
+.invalid-inset-input-text-field input {
+  @apply placeholder-red-300 text-red-900;
+}
+
+.invalid-inset-input-text-field label {
+  @apply text-red-900;
+}
+
+
