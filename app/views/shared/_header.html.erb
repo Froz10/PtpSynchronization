@@ -94,7 +94,7 @@
             data-transition-leave-end="transform opacity-0 scale-95"
           >
             <% if current_user %>                  
-              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" %>
+              <%= link_to "Sign out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" %>
             <% else %>
               <%=link_to "Sign Up", new_user_registration_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem", tabindex: "-1", id: "user-menu-item-1" %>
               <%=link_to "Sign In", new_user_session_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem", tabindex: "-1", id: "user-menu-item-2" %>

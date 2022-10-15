@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import { enter, leave, toggle } from 'el-transition'
 import axios from 'axios';
+import { Turbo } from "@hotwired/turbo-rails";
 
 var arraySize = 0
 
@@ -33,6 +34,7 @@ export default class extends Controller {
         this.outputTarget.innerHTML = hostsHTML;
         arraySize = hostsArray.length
         this.hidePanel(arraySize)
+        arraySize = 0
     })   
   }
 
@@ -69,7 +71,7 @@ export default class extends Controller {
           'ACCEPT': 'application/json'
         }
       }).then((response) => {
-        window.location = "/hosts"
+        Turbo.visit("/hosts")
       }).catch((response) => {
         this.hostnameWrapperTarget.classList.add('invalid-inset-input-text-field')
         this.hostnameWrapperTarget.classList.remove('focus-within:ring-1')
