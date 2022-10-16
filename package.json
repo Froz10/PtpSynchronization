@@ -4,8 +4,6 @@
     "@activeadmin/activeadmin": "^2.13.1",
     "@hotwired/stimulus": "^3.1.0",
     "@hotwired/turbo-rails": "^7.2.2",
-    "@rails/ujs": "^6.0.0",
-    "autoprefixer": "^10.4.7",
     "axios": "^1.1.2",
     "el-transition": "^0.0.7",
     "esbuild": "^0.14.39",
