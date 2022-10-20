@@ -4,9 +4,14 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root 'home#index'
-  resources :hosts
 
-  namespace :api do
+  resources :hosts do
+    collection do
+      get :search
+    end
+  end
+
+  namespace :api, defaults: { format: 'json' } do
     resources :configurations, only: :create
   end
 end

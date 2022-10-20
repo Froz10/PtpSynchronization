@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { enter, leave, toggle } from 'el-transition'
 
 export default class extends Controller {
+
   connect() {
     document.getElementById('modal-wrapper').addEventListener('click', this.closeModal);
   }
@@ -21,5 +22,4 @@ export default class extends Controller {
     enter(document.getElementById('modal-backdrop'));
     enter(document.getElementById('modal-panel'));
   }
-
 }
