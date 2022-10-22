@@ -4,6 +4,7 @@ module Api
   
     def create
       host = Host.find_by!(name: params[:name])
+      SshConnectingService.new.call(host, current_user.tacacs_users)
 
       respond_to do |format|
         format.json {
