@@ -16,7 +16,7 @@ gem "tailwindcss-rails"
 gem 'turbo-rails'
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
-gem 'net-ssh', '~> 3.2'
+gem 'net-ssh'
 gem "jsbundling-rails"
 gem "cssbundling-rails"
 gem 'devise'
