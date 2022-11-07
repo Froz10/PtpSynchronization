@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: 'json' } do
-    resources :configurations, only: :create
+    resources :configurations
   end
 end

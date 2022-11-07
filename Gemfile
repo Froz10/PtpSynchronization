@@ -16,6 +16,7 @@ gem "tailwindcss-rails"
 gem 'turbo-rails'
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
+gem 'net-ssh'
 gem "jsbundling-rails"
 gem "cssbundling-rails"
 gem 'devise'
@@ -29,6 +30,7 @@ group :development, :test do
   gem "rspec-rails", "~> 5.1", ">= 5.1.2"
   gem 'factory_bot_rails'
   gem 'pry-rails'
+  gem 'dotenv-rails'
 end
 
 group :development do
