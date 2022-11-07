@@ -1,7 +1,6 @@
-class SshConnectingService < ApplicationService
-  def call(host, tacacs_user)
-
-    Net::SSH.start(host.address, tacacs_user.first.username, password: tacacs_user.first.password, :auth_methods => ["password"]) do |ssh|
+class ConfigurationWorker < ApplicationWorker
+  def perform(ip_address, username, password)
+    Net::SSH.start(ip_address, username, password: password, :auth_methods => ["password"]) do |ssh|
       channel = ssh.open_channel do |ch|
         ch.send_channel_request("shell") do |ch, success|
           raise "could not execute command" unless success
