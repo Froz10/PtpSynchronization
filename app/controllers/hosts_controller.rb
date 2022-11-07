@@ -1,5 +1,6 @@
 class HostsController < ApplicationController
-  def index   
+  def index
+    @hosts = Host.all
   end
 
   def search
