@@ -45,7 +45,7 @@ ActiveAdmin.register Host do
     f.inputs do
       f.input :name
       f.input :address
-      f.input :region_id, as: :select, collection: Region.all.collect { |region| [region.name, region.id] }
+      f.input :region_id, as: :select, input_html: { class: "select2" }, collection: Region.all.collect { |region| [region.name, region.id] }
     end
     f.actions
   end
