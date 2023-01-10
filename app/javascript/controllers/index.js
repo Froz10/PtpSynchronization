@@ -18,3 +18,6 @@ application.register("panel", PanelController)
 
 import SidebarController from "./sidebar_controller.js"
 application.register("sidebar", SidebarController)
+
+import SyncController from "./sync_controller.js"
+application.register("sync", SyncController)

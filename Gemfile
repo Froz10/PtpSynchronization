@@ -5,6 +5,7 @@ ruby "3.1.2"
 
 gem 'activeadmin'
 gem 'activerecord-import', '~> 1.2'
+gem 'after_commit_everywhere', '~> 1'
 gem 'caxlsx', '~> 3.1'
 gem 'caxlsx_rails', '~> 0.6'
 gem 'propshaft'
