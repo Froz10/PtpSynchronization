@@ -11,8 +11,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :synchronization, only: [:index]
-
   namespace :api, defaults: { format: 'json' } do
     resources :configurations
     resources :synchronizations
