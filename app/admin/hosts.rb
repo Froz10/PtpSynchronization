@@ -24,7 +24,9 @@ ActiveAdmin.register Host do
     id_column
     column :name
     column :address
-    column :region_id
+    column :region_id do |host|
+      host.region.name
+    end
     column :created_at
     actions
   end
@@ -43,7 +45,7 @@ ActiveAdmin.register Host do
     f.inputs do
       f.input :name
       f.input :address
-      f.input :region_id
+      f.input :region_id, as: :select, input_html: { class: "select2" }, collection: Region.all.collect { |region| [region.name, region.id] }
     end
     f.actions
   end
