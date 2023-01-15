@@ -6,11 +6,18 @@ RSpec.describe "Api::Configurations", type: :request do
     let(:headers) do
       { "ACCEPT" => "application/json" }
     end
+    let!(:user) { create(:user) }
+    let!(:tacacs_user) { create(:tacacs_user, user: user) }
+    
+    before do
+      sign_in user
+    end
+
     let(:region) { create(:region, name: "Region") }
     let(:address) { "109.124.241.43" }
     let(:name) { "VO000119-CSG01" }
     let(:host) { create(:host, region: region, address: address, name: name) }
-
+    
     context "host exists" do
       it "is successful" do
         post "/api/configurations", params: { name: host.name }, headers: headers
