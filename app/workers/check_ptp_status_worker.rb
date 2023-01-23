@@ -25,8 +25,4 @@ class CheckPtpStatusWorker < ApplicationWorker
       ssh.loop { false }
     end
   end
-
-  def on_complete(status, option)
-    
-  end
 end

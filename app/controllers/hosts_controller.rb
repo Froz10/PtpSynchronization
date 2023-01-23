@@ -1,6 +1,13 @@
 class HostsController < ApplicationController
   def index
-    @hosts = Host.all
+    @regions = Region.all
+
+    if params[:region].present?
+      @region = Region.find_by_name(params[:region])
+      @hosts = @region.hosts
+    else
+      @hosts = Host.includes(:region)
+    end
   end
 
   def search
