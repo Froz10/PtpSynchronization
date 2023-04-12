@@ -13,7 +13,7 @@
 						d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
 						clip-rule="evenodd" />
 				</svg>
-				<%= search_form_for @q, url: region_hosts_path(region_id: @region ), data: { turbo_frame: :results } do |f| %>
+				<%= search_form_for @q, url: region_hosts_path(region_id: @region), data: { turbo_frame: :results } do |f| %>
 					<%= f.search_field :name_or_address_cont, class: "bg-gray-50 outline-none ml-1 block", 
 																										autofocus: true,
 																										oninput: 'this.form.requestSubmit()',
@@ -26,9 +26,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto" id="hosts">
+	<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
 		<%= turbo_frame_tag :results, data: { turbo_action: 'advance' } do %>
 			<%= render "host",  hosts: @hosts %>
-		<% end %>
+		<% end %>												
 	</div>
 </div>
