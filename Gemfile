@@ -12,9 +12,11 @@ gem 'propshaft'
 gem 'rubyzip', '~> 2'
 gem 'rubyXL', '~> 3.4'
 gem "rails", "~> 7.0.3"
+gem "ransack", "~> 3.2"
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem "pg", "~> 1.1"
+gem "pagy", "~> 6.0"
 gem "puma", "~> 5.0"
 gem 'net-ssh'
 gem "jsbundling-rails"

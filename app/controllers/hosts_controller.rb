@@ -1,26 +1,10 @@
 class HostsController < ApplicationController
+  include Pagy::Backend
+
   def index
     @regions = Region.all
-
-    if params[:region].present?
-      @region = Region.find_by_name(params[:region])
-      @hosts = @region.hosts
-    else
-      @hosts = Host.includes(:region)
-    end
-  end
-
-  def search
-    if params[:hostname].present?
-      @hosts = Host.filter_by_name(params[:hostname]).map(&:name)
-    else
-      @hosts = []
-    end
-   
-    respond_to do |format|
-      format.json {
-        render json: { hostnames: @hosts }, partial: "shared/modal", locals: { hosts: @hosts }
-      }
-    end
+    @region = Region.find(params[:region_id])
+    @q = @region.hosts.ransack(params[:q])
+    @pagy, @hosts = pagy_countless(@q.result(distinct: true), items: 8)
   end
 end

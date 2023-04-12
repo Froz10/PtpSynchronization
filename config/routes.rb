@@ -3,16 +3,18 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
-  root 'home#index'
+  root to: "home#index"
 
-  resources :hosts do
-    collection do
-      get :search
-    end
+  resources :regions do
+    resources :hosts
   end
 
   namespace :api, defaults: { format: 'json' } do
-    resources :configurations
+    resources :configurations do
+      collection do
+        get :search
+      end
+    end
     resources :synchronizations
   end
 end

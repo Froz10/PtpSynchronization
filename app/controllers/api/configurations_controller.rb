@@ -1,7 +1,6 @@
 module Api
   class ConfigurationsController < ApplicationController
     skip_before_action :verify_authenticity_token
-    before_action :set_host!
 
     def index    
       respond_to do |format|
@@ -16,15 +15,17 @@ module Api
       render json: result.to_json, status: :ok
     end
 
-    private
-
-    def set_host!
-      @host = Host.find_by!(name: params[:name])
-    rescue ActiveRecord::RecordNotFound => e
+    def search
+      if params[:hostname].present?
+        @hosts = Host.filter_by_name(params[:hostname]).map(&:name)
+      else
+        @hosts = []
+      end
+     
       respond_to do |format|
-        format.json do
-          render json: { error: e.message }.to_json, status: 404
-        end
+        format.json {
+          render json: { hostnames: @hosts }, partial: "shared/modal", locals: { hosts: @hosts }
+        }
       end
     end
   end
