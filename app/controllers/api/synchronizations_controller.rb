@@ -4,11 +4,6 @@ module Api
 
     def create  
       host = Host.find_by_id(params[:host_id])
-      check_ptp_status(host)
-
-      hosts = Host.includes(:region)
-      render turbo_stream: turbo_stream.replace('table_status',
-      render_to_string(partial: 'hosts/table', locals: { hosts: hosts }))   
     end
   
     private

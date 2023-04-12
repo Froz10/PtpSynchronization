@@ -22,7 +22,7 @@ export default class extends Controller {
   
   findHostname() {
     this.sourceTarget.classList.remove("hidden")
-    fetch(`/hosts/search?hostname=${ this.inputTarget.value }`, {
+    fetch(`/api/configurations/search?hostname=${ this.inputTarget.value }`, {
       headers: { accept: 'application/json'} })
       .then((response) => response.json())
       .then((data) => {
