@@ -4,6 +4,7 @@ module Api
 
     def create  
       host = Host.find_by_id(params[:host_id])
+      check_ptp_status(host)
     end
   
     private

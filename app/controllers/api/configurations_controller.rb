@@ -11,7 +11,8 @@ module Api
     end
     
     def create
-      result = SshConfigurationService.new.call(@host, current_user.tacacs_users.first)
+      host = Host.find_by(name: params[:name])
+      result = SshConfigurationService.new.call(host, current_user.tacacs_users.first)
       render json: result.to_json, status: :ok
     end
 

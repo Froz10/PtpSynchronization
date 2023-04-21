@@ -40,13 +40,13 @@ export default class extends Controller {
 
   hostTemplate(host) {
       return `
-      <li class="px-3 py-2 cursor-pointer hover:bg-gray-200" data-action="click->panel#hostnameChoice">
-        <h3 data-panel-target='hostnameChoice(${host})'> ${host}</h3>
+      <li class="px-3 py-2 cursor-pointer hover:bg-gray-200">
+        <h3 data-action="click->panel#hostnameChoice" data-panel-hostname-param='${host}'>${host}</h3>
       </li>`
   }
 
-  hostnameChoice(host) {
-    this.inputTarget.value = `${host.originalTarget.textContent.trim()}`
+  hostnameChoice({ params: { hostname } }) {
+    this.inputTarget.value = hostname
     this.sourceTarget.classList.add("hidden")
   }
 
@@ -80,7 +80,7 @@ export default class extends Controller {
             'ACCEPT': 'application/json'
           }       
         }).then((response) => {
-          Turbo.visit("/hosts")
+          Turbo.visit(location.href)
         }).catch((response) => {
         })
       }).catch((response) => {
