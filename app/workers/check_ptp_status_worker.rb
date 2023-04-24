@@ -9,9 +9,9 @@ class CheckPtpStatusWorker < ApplicationWorker
 
           ch.on_data do |c, data|
             $stdout.print data
-            if data.match? ("Time lock success :yes")
+            if data.match? ("Time lock success :yes|Time lock success  :yes")
               host.update(ptp_status: "synchronized")
-            elsif data.match? ("Time lock success :no")
+            elsif data.match? ("Time lock success :no|Time lock success  :no")
               host.update(ptp_status: "unsynchronized")
             end
           end

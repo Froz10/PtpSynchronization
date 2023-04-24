@@ -10,7 +10,5 @@ export default class extends Controller {
       method: 'POST',
       headers: { accept: 'application/json'}
       })
-    .then (response => response.text())
-    .then(html => Turbo.renderStreamMessage(html));
   }
 }
