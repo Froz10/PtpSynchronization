@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :hosts
   end
 
-  namespace :api, defaults: { format: 'json' } do
+  namespace :api do
     resources :configurations do
       collection do
         get :search

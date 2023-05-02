@@ -74,7 +74,7 @@
 
           <div data-panel-target="hostnameWrapper" class="relative mt-5 border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
             <label for="hostname" class="block text-xs font-medium text-gray-900">Hostname</label>
-            <input type="text" data-action="input->panel#findHostname" data-panel-target="input" name="hostname" id="hostname" class="block w-full outline-none p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="VO000084-CSG01">
+            <input type="text" data-action="input->panel#findHostname click@window->panel#resetOnOutsideClick" data-panel-target="input" name="hostname" id="hostname" class="block w-full outline-none p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="VO000084-CSG01">
             <div data-panel-target="invalidSvg" class="hidden absolute top-4 right-3 flex items-center pointer-events-none">
               <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" />

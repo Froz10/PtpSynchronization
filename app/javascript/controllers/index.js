@@ -4,8 +4,8 @@
 
 import { application } from "./application"
 
-import ErrorController from "./error_controller.js"
-application.register("error", ErrorController)
+import FlashController from "./flash_controller.js"
+application.register("flash", FlashController)
 
 import HeaderController from "./header_controller.js"
 application.register("header", HeaderController)
