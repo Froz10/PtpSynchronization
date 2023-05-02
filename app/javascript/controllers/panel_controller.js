@@ -10,7 +10,9 @@ export default class extends Controller {
     this.element.addEventListener("hidden", this.hidePanel())
   }
 
-  static targets = ['closeButton', 'input', 'output', 'hostnameChoice', 'source', 'submit', 'hostnameWrapper', 'invalidSvg' , 'errorMessage', 'loadingSvg', 'loadingMessage'];
+  static targets = ['closeButton', 'input', 'output', 'hostnameChoice', 
+                    'source', 'submit', 'hostnameWrapper', 'invalidSvg', 
+                    'errorMessage', 'loadingSvg', 'loadingMessage'];
 
   connect() {
     this.closeButtonTarget.addEventListener('click', () => {
@@ -18,12 +20,19 @@ export default class extends Controller {
       leave(document.getElementById('modal-backdrop'));
       leave(document.getElementById('modal-panel'));
     });
+    this.token = document.querySelector('meta[name="csrf-token"]').content;
+  }
+
+  closeModal() {
+    leave(document.getElementById('modal-wrapper'));
+    leave(document.getElementById('modal-backdrop'));
+    leave(document.getElementById('modal-panel'));
   }
   
   findHostname() {
     this.sourceTarget.classList.remove("hidden")
     fetch(`/api/configurations/search?hostname=${ this.inputTarget.value }`, {
-      headers: { accept: 'application/json'} })
+      headers: { accept: 'application/json' } })
       .then((response) => response.json())
       .then((data) => {
         var hostsHTML = "";
@@ -35,7 +44,7 @@ export default class extends Controller {
         arraySize = hostsArray.length
         this.hidePanel(arraySize)
         arraySize = 0
-    })   
+    })
   }
 
   hostTemplate(host) {
@@ -66,24 +75,15 @@ export default class extends Controller {
       this.errorMessageTarget.classList.remove('hidden')
       this.errorMessageTarget.textContent = 'Hostname must be less then 5 characters.'
     } else {
-      axios.get('/api/configurations', { 
-        params: { 
-          name: this.inputTarget.value 
-        }}, {
-        headers: {
-          'ACCEPT': 'application/json'
-        }       
-      }).then((response) => {
-        this.spinProccess()
         axios.post('/api/configurations', { name: this.inputTarget.value }, {
           headers: {
-            'ACCEPT': 'application/json'
-          }       
+            'X-CSRF-Token': this.token,
+            accept: 'text/vnd.turbo-stream.html'
+          }  
         }).then((response) => {
-          Turbo.visit(location.href)
-        }).catch((response) => {
-        })
-      }).catch((response) => {
+          this.closeModal()
+          Turbo.renderStreamMessage(response.data)
+        }).catch((error) => {
         this.hostnameWrapperTarget.classList.add('invalid-inset-input-text-field')
         this.hostnameWrapperTarget.classList.remove('focus-within:ring-1')
         this.hostnameWrapperTarget.classList.remove('focus-within:ring-indigo-600')
@@ -95,8 +95,20 @@ export default class extends Controller {
     }
   }
 
-  spinProccess() {
-    this.loadingSvgTarget.classList.remove('hidden')
-    this.loadingMessageTarget.textContent = 'Processing...'
+  resetOnOutsideClick(event) {   
+    if (!this.element.contains(event.target)) {   
+        this.reset()
+    }
+  }
+
+  reset() {
+    this.hostnameWrapperTarget.classList.remove('invalid-inset-input-text-field')
+    this.hostnameWrapperTarget.classList.add('focus-within:ring-1')
+    this.hostnameWrapperTarget.classList.add('focus-within:ring-indigo-600')
+    this.hostnameWrapperTarget.classList.add('focus-within:border-indigo-600')
+    this.invalidSvgTarget.classList.add('hidden')
+    this.errorMessageTarget.classList.add('hidden')
+    this.sourceTarget.classList.add("hidden")
+    this.inputTarget.value = ""
   }
 }

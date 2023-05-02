@@ -1,19 +1,18 @@
 module Api
-  class ConfigurationsController < ApplicationController
-    skip_before_action :verify_authenticity_token
-
-    def index    
-      respond_to do |format|
-        format.json {
-          render json: @host.to_json, status: :ok
-        }
-      end
-    end
-    
+  class ConfigurationsController < ApplicationController      
     def create
       host = Host.find_by(name: params[:name])
-      result = SshConfigurationService.new.call(host, current_user.tacacs_users.first)
-      render json: result.to_json, status: :ok
+      if host.present?
+        respond_to do |format|
+            SshConfigurationService.new.call(host, current_user.tacacs_users.first)
+            format.turbo_stream { 
+              flash.now[:notice] = "Configuration was successfully created."
+              render turbo_stream: turbo_stream.update('flash', partial:'layouts/flash')
+            }
+        end
+      else
+        head 404
+      end
     end
 
     def search
