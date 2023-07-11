@@ -1,4 +1,4 @@
-class CheckPtpStatusWorker < ApplicationWorker
+class CheckPtpConfigWorker < ApplicationWorker
   def perform(ip_address, username, password, host_id)
     host = Host.find_by_id(host_id)
     return unless host
@@ -10,10 +10,8 @@ class CheckPtpStatusWorker < ApplicationWorker
 
           ch.on_data do |c, data|
             $stdout.print data
-            if data.match? ("Time lock success :yes|Time lock success  :yes")
-              host.update(ptp_status: "synchronized")
-            elsif data.match? ("Time lock success :no|Time lock success  :no")
-              host.update(ptp_status: "unsynchronized")
+            if data.match? ("PTP state         :enable")
+              host.update(ptp_config: "enable")
             end
           end
   

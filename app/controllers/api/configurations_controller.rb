@@ -1,7 +1,7 @@
 module Api
   class ConfigurationsController < ApplicationController      
     def create
-      host = Host.find_by(name: params[:name])
+      host = Host.find_by_name(params[:name])
       if host.present?
         respond_to do |format|
             SshConfigurationService.new.call(host, current_user.tacacs_users.first)
