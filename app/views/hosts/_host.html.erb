@@ -1,26 +1,36 @@
+<%- green_status = "relative inline-block px-3 py-1 text-green-500 rounded-full gap-x-2 bg-green-100/60 dark:bg-gray-800" %>
+<%- red_status = "relative inline-block px-3 py-1 text-red-500 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800" %>
+<%- green_config = "inline-flex items-center px-3 py-1 text-green-500 rounded-full gap-x-2 bg-green-100/60 dark:bg-gray-800" %>
+<%- red_config = "inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800" %>
+<%- config_enable = "M10 3L4.5 8.5L2 6" %>
+<%- config_disable = "M9 3L3 9M3 3L9 9" %>
 <div data-controller="sync" class="inline-block min-w-full shadow rounded-lg overflow-hidden">
   <table class="min-w-full leading-normal">
     <thead>
       <tr>
         <th
-          class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+          class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
           Hostname
         </th>
         <th
-          class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+          class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
           Region
         </th>
         <th
-          class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+          class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
           Ip Address
         </th>
         <th
-          class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+          class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
           Ptp Configuration
         </th>
         <th
-          class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+          class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
           Ptp Status
+        </th>
+        <th
+          class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+          4G Interfaces
         </th>
       </tr>
     </thead>
@@ -31,11 +41,15 @@
             <div class="flex items-center">
               <div class="flex-shrink-0 w-10 h-10">
                 <img class="w-full h-full rounded-full"
-                                          src= <%= asset_path 'CSG.jpg' %>
+                                          <% if host.name.match('CSG') %>
+                                            src= <%= asset_path 'CSG.jpg' %>
+                                          <% else %>
+                                            src= <%= asset_path 'AGN.jpg' %>
+                                          <% end %>  
                                           alt="" />
                                   </div>
                 <div class="ml-3">
-                  <p class="text-gray-900 whitespace-no-wrap">
+                  <p class="text-gray-900 whitespace-no-wrap font-semibold">
                     <%= host.name %>
                   </p>
                 </div>
@@ -50,21 +64,33 @@
             </p>
           </td>
           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <p class="text-gray-900 whitespace-no-wrap">
-              <%= host.ptp_config %>
-            </p>
+            <div class="<%=(host.ptp_config == "enable" ? green_config : red_config) %>">
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="<%=(host.ptp_config == "enable" ? config_enable : config_disable) %>" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+
+                                        <h2 class="text-sm font-semibold"><%= host.ptp_config %></h2>
+                                    </div>
           </td>
           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <span
-                                  class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                  <span aria-hidden
-                                      class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-            <span class="relative"
+            <span class="<%=(host.ptp_status == "unsynchronized" ? red_status : green_status) %>">
+            <h2 class="text-sm font-semibold"
                   data-controller="sync"
                   data-action="load@window->sync#check_ptp_status" 
                   data-sync-id-value="<%= host.id %>" >
               <%= host.ptp_status %>
-            </span>
+            </h2>
+          </td>
+          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm font-semibold">
+            <% if config_interfaces_is_valid?(host) %>
+              <p class="<%= green_status %>">
+                Yes 
+              </p>
+            <% else %>
+              <p class="<%= red_status %>">
+                No
+              </p>
+            <% end %>          
           </td>
         </tr>
       <% end %>

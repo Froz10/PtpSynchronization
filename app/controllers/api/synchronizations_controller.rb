@@ -4,13 +4,10 @@ module Api
 
     def create  
       host = Host.find_by_id(params[:host_id])
-      check_ptp_status(host)
-    end
-  
-    private
-
-    def check_ptp_status(host)
-      ptp_status = SshCheckPtpStatusService.new.call(host, current_user.tacacs_users.first)
+      SshCheckPtpStatusService.new.call(host, current_user.tacacs_users.first)
+      SshCheckPtpConfigService.new.call(host, current_user.tacacs_users.first)
+      SshCheckInterfaceService.new.call(host, current_user.tacacs_users.first)
+      SshCheckPtpInterfaceService.new.call(host, current_user.tacacs_users.first)
     end
   end
 end
